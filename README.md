@@ -72,6 +72,7 @@ const tagNames = document.getElementsByTagName("a");
 ```jsx
 <div class="box">
   <div class="box-02">Box 02 -- 01</div>
+  <p>Title</p>
   <div class="box-02">Box 02</div>
   <div class="box-02">Box 02</div>
   <div class="box-02">Box 02</div>
@@ -79,6 +80,7 @@ const tagNames = document.getElementsByTagName("a");
 
 const boxNode = document.querySelector(".box .box-02");
 const boxNodes = document.querySelectorAll(".box-02");
+const titleEl = document.querySelectorAll("p");
 ```
 
 - querySelector
@@ -99,6 +101,7 @@ const boxNodes = document.querySelectorAll(".box-02");
 ```
 
 Làm sao để lấy tất cả các thẻ `li` nằm trong `box-1` ?
+
 cách 1 :
 
 ```jsx
@@ -116,3 +119,44 @@ const liBox01s = box01.getElementsByTagName("li");
 
 // với cách này có thể dùng lại box01
 ```
+
+## Attribute node & Text node
+
+### Attribute
+
+###### Muốn get/set được Attribute thì đầu tiên phải lấy được Element
+
+1. Attribute hợp lệ
+   VD: thẻ `<a/>` thì có attribute hợp lệ là `href`,
+
+   ```jsx
+   // Lấy element
+   const headingEl = document.querySelector("h1");
+   // set attribute hợp lệ
+   headingEl.title = "title";
+   // thẻ h1 không có attribute hợp lệ là 'data' nên khi set , log ra thì có nhưng trong DOM lại không hiển thị
+   headingEl.data = "data test";
+   // get attribute
+   console.log(headingEl.title); // ==> title
+   console.log(headingEl.data); // ==> data test
+   ```
+
+2. Attribute không hợp lệ
+   VD: thẻ `<a/>` thì có attribute không hợp lệ là `tuanva` chẳng hạn,
+
+```jsx
+// Lấy Element
+const headingEl02 = document.querySelector("h2");
+// set attribute
+headingEl02.setAttribute("class", "heading-02");
+// get attribute
+console.log(headingEl02.getAttribute("class")); // ==> heading-02
+```
+
+==> sẽ có 2 cách để truy cập `Attribute`
+
+- Cách 1 : Truy xuất trực tiếp qua thuộc tính
+- Cách 1 : Truy xuất qua phương thức
+  ==> Thường thì sẽ hay dùng cách truy xuất qua phương thức (dùng `setAttribute` và `getAttribute` để làm việc với Attribute) hơn
+
+### Text node
