@@ -40,9 +40,79 @@
 
 Element : ID , class , tag, CSS selector, HTML colection
 
+> Select by ID
+
 - getElementById
   ==> trả trực tiếp về element, nếu có nhiều ID giống nhau thì trả về element đầu tiên, không tìm thấy trả về `null`
 
 ```jsx
 const headingNode = document.getElementById("heading");
+```
+
+> Select by class
+
+- getElementsByClassName
+  ==> trả về 1 `HTML Collection` (1 mảng), muốn làm việc phải dùng vòng lặp
+
+```jsx
+const headingNodes = document.getElementsByClassName("heading");
+```
+
+> Select by tag
+
+- getElementsByTagName
+  ==> trả về 1 `HTML Collection` (1 mảng), muốn làm việc phải dùng vòng lặp
+
+```jsx
+const tagNames = document.getElementsByTagName("a");
+```
+
+> CSS selector
+
+```jsx
+<div class="box">
+  <div class="box-02">Box 02 -- 01</div>
+  <div class="box-02">Box 02</div>
+  <div class="box-02">Box 02</div>
+  <div class="box-02">Box 02</div>
+</div>;
+
+const boxNode = document.querySelector(".box .box-02");
+const boxNodes = document.querySelectorAll(".box-02");
+```
+
+- querySelector
+  ==> trả về 1 element, nếu có phần tử cùng matching, thì sẽ trả về phần tử đầu tiên
+- querySelectorAll
+  ==> trả về 1 Node list (1 mảng) gồm tất cả các element matching, muốn làm việc phải dùng mảng
+
+##### Note : TH khác với Get element
+
+```jsx
+<div class="box-1">
+  <ul>
+    <li>01</li>
+    <li>02</li>
+    <li>03</li>
+  </ul>
+</div>
+```
+
+Làm sao để lấy tất cả các thẻ `li` nằm trong `box-1` ?
+cách 1 :
+
+```jsx
+// Trả về 1 NodeList gồm tất cả các li thuộc .box-1
+const liBox01s = document.querySelectorAll(".box-1 li");
+```
+
+cách 2 :
+
+```jsx
+//Việc 1:  lấy về element box-1
+const box01 = document.querySelector(".box-1");
+// Việc 2: Lấy tất cả li thuộc box-1
+const liBox01s = box01.getElementsByTagName("li");
+
+// với cách này có thể dùng lại box01
 ```
